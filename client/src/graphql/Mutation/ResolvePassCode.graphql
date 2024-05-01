@@ -1,0 +1,8 @@
+mutation ResolvePassCode($input: ResolvePassCodeInput!) {
+  resolvePassCode(input: $input) {
+    isNewUser
+    success
+    token
+    error
+  }
+}

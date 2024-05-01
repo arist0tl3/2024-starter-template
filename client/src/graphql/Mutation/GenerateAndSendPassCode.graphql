@@ -1,0 +1,6 @@
+mutation GenerateAndSendPassCode($input: GenerateAndSendPassCodeInput!) {
+  generateAndSendPassCode(input: $input) {
+    error
+    success
+  }
+}

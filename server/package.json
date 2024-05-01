@@ -1,7 +1,15 @@
 {
   "dependencies": {
     "@apollo/server": "^4.10.4",
-    "graphql": "^16.8.1"
+    "@apollo/subgraph": "^2.7.4",
+    "google-libphonenumber": "^3.2.34",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.23.0",
+    "graphql-tag": "^2.12.6",
+    "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.3.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
@@ -16,6 +24,8 @@
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/typescript": "^4.0.6",
     "@graphql-codegen/typescript-resolvers": "^4.0.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",

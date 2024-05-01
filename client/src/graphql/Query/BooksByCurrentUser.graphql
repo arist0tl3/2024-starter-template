@@ -1,0 +1,7 @@
+query BooksByCurrentUser {
+  booksByCurrentUser {
+    _id
+    author
+    title
+  }
+}
