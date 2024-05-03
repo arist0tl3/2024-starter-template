@@ -1,0 +1,11 @@
+mutation CreateBook($input: CreateBookInput!) {
+  createBook(input: $input) {
+    error
+    book {
+      _id
+      author
+      title
+    }
+    success
+  }
+}

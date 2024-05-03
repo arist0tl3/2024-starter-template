@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import { v4 as uuidv4 } from "uuid";
+import { Schema, model } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface IBook {
   _id: string;
@@ -16,6 +16,7 @@ export interface IBook {
 const bookSchema = new Schema<IBook>({
   _id: { type: String, required: true, default: uuidv4 },
   createdAt: { type: Date, required: true, default: Date.now },
+  createdById: { type: String, required: true },
   deleted: { type: Boolean },
   deletedAt: { type: Date },
   deletedById: { type: String },
@@ -24,6 +25,6 @@ const bookSchema = new Schema<IBook>({
   title: { type: String, required: true },
 });
 
-const Book = model<IBook>("Book", bookSchema);
+const Book = model<IBook>('Book', bookSchema);
 
 export default Book;

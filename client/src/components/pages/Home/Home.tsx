@@ -1,11 +1,15 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 
 import LogoutButton from './LogoutButton/LogoutButton';
 
 function Home(): ReactElement {
   return (
     <div>
-      <div>{'Home'}</div>
+      <h1>{'Home'}</h1>
+      <div>
+        <Link to={'/books'}>{'My Books'}</Link>
+      </div>
       <LogoutButton />
     </div>
   );
