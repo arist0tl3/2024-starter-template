@@ -24,7 +24,7 @@ async function resolvePassCode(parent: undefined, args: MutationResolvePassCodeA
     if (!passCodeToken) throw new Error('Unable to verify this code');
 
     // Remove token
-    await context.models.PassCodeToken.findByIdAndRemove(passCodeToken._id);
+    await context.models.PassCodeToken.findByIdAndDelete(passCodeToken._id);
 
     let isNewUser = false;
 

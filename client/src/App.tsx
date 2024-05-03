@@ -17,15 +17,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        {!currentUser && <Route path={'/'} element={<Login />} />}
+      {!currentUser && (
+        <Routes>
+          <Route path={'/'} element={<Login />} />
+        </Routes>
+      )}
 
-        {currentUser && (
-          <CurrentUserContext.Provider value={currentUser}>
+      {currentUser && (
+        <CurrentUserContext.Provider value={currentUser}>
+          <Routes>
             <Route path={'/'} element={<Home />} />
-          </CurrentUserContext.Provider>
-        )}
-      </Routes>
+          </Routes>
+        </CurrentUserContext.Provider>
+      )}
     </BrowserRouter>
   );
 }

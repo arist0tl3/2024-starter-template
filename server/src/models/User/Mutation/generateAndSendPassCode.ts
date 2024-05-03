@@ -1,19 +1,11 @@
 // import { Twilio } from 'twilio';
-import { PhoneNumberUtil, PhoneNumberFormat } from "google-libphonenumber";
+import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
 
-import { IContext } from "../../../types";
+import { IContext } from '../../../types';
 
-import {
-  GenerateAndSendPassCodeResponse,
-  MutationGenerateAndSendPassCodeArgs,
-} from "../../../generated";
+import { GenerateAndSendPassCodeResponse, MutationGenerateAndSendPassCodeArgs } from '../../../generated';
 
-const {
-  TWILIO_AUTH_TOKEN = "",
-  TWILIO_ACCOUNT_SID = "",
-  NODE_ENV = "dev",
-  TWILIO_FROM_NUMBER = "",
-} = process.env;
+const { TWILIO_AUTH_TOKEN = '', TWILIO_ACCOUNT_SID = '', NODE_ENV = 'dev', TWILIO_FROM_NUMBER = '' } = process.env;
 
 // const twilioClient = new Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
@@ -25,7 +17,7 @@ const phoneUtil = new PhoneNumberUtil();
 async function generateAndSendPassCode(
   parent: undefined,
   args: MutationGenerateAndSendPassCodeArgs,
-  context: IContext
+  context: IContext,
 ): Promise<GenerateAndSendPassCodeResponse> {
   try {
     const expirationDate = new Date();
@@ -34,24 +26,21 @@ async function generateAndSendPassCode(
     const { phoneNumber } = args.input;
 
     const parsedPhoneNumber = phoneUtil.parse(phoneNumber);
-    const formattedPhoneNumber = phoneUtil.format(
-      parsedPhoneNumber,
-      PhoneNumberFormat.E164
-    );
+    const formattedPhoneNumber = phoneUtil.format(parsedPhoneNumber, PhoneNumberFormat.E164);
 
     // Remove any existing pass codes for this number
-    await context.models.PassCodeToken.remove({
+    await context.models.PassCodeToken.deleteMany({
       phoneNumber: formattedPhoneNumber,
     });
 
-    if (NODE_ENV === "production") {
-      const isFakeNumber = formattedPhoneNumber.includes("+1555");
+    if (NODE_ENV === 'production') {
+      const isFakeNumber = formattedPhoneNumber.includes('+1555');
 
       let passCode = Math.floor(100000 + Math.random() * 900000).toString();
 
       // TODO: Move this to a staging env
       if (isFakeNumber) {
-        passCode = "111112";
+        passCode = '111112';
       }
 
       await context.models.PassCodeToken.create({
@@ -68,7 +57,7 @@ async function generateAndSendPassCode(
         // });
       }
     } else {
-      const passCode = "123456";
+      const passCode = '123456';
 
       await context.models.PassCodeToken.create({
         passCode,
